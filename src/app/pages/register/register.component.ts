@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  toLogin(){
+  toLogin() {
     this.router.navigateByUrl('pages/login');
   }
 

@@ -1,0 +1,13 @@
+body{
+    display: block;
+    padding-top:20px; 
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+.row{
+
+    display:flex;
+
+}

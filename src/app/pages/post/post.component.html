@@ -1,3 +1,86 @@
-<p>
-  post works!
-</p>
+<head>
+  
+</head>
+<body>
+  
+
+  <h1>Post a Job</h1>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="inputGroupSelect01">Category</label>
+    </div>
+    <select #category class="custom-select" id="inputGroupSelect01">
+      <option selected>Choose...</option>
+      <option value='Design'>Design</option>
+      <option value='Programming'>Programming</option>
+    </select>
+  </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Type</label>
+      </div>
+      <select #type class="custom-select" id="inputGroupSelect01">
+        <option selected>Choose...</option>
+        <option value='Full Time'>Full Time</option>
+        <option value='Part Time'>Part Time</option>
+        <option value='Freelance'>Freelance</option>
+      </select>
+    </div>
+
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Company</span>
+        </div>
+        <input #company type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">URL</span>
+        </div>
+        <input #url type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Position</span>
+        </div>
+        <input #position type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Location</span>
+        </div>
+        <input #location type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Description</span>
+        </div>
+        <input #description type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+      </div>
+
+      
+
+
+   <!-- <button (click)="addPost(category.value, company.value, description.value, location.value, position.value, type.value, url.value)">post</button> -->
+
+   <button (click)="addPost(category.value, company.value, description.value, location.value, position.value, type.value, url.value)" type="button" class="btn btn-success" id="postBtn" >
+      <i class="fas fa-bullhorn"></i>
+      Post  
+    </button>
+
+  <!-- <ul>
+    <li *ngFor="let post of posts | async"
+        [class.company]="post.company">
+        {{ post.company }}
+    </li>
+  </ul>  -->
+
+
+</body>

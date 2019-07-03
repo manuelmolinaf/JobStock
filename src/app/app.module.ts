@@ -10,6 +10,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { PostComponent } from './pages/post/post.component';
+import { AngularFirestore } from '@angular/fire/firestore';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,7 @@ import { PostComponent } from './pages/post/post.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule
   ],
-  providers: [],
+  providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
