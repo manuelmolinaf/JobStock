@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Post } from '../models/post.model';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+
 
 
 @Injectable({
@@ -9,66 +11,64 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 })
 export class FirestoreDataService {
 
-  designPostsCollectionRef: AngularFirestoreCollection<Post>;
-  designPosts: Observable<Post[]>;
-
-  progPostsCollectionRef: AngularFirestoreCollection<Post>;
-  progPosts: Observable<Post[]>;
-
-
+  postsCollectionRef: AngularFirestoreCollection<Post>;
+  posts: Observable<Post[]>;
   model: Post;
 
 
   constructor(public afs: AngularFirestore) {
 
-    this.designPostsCollectionRef = this.afs.collection<Post>('designPosts');
-    this.designPosts = this.designPostsCollectionRef.valueChanges();
+    this.postsCollectionRef = this.afs.collection<Post>('posts');
+    this.posts = this.postsCollectionRef.snapshotChanges().pipe(map(actions => {
 
-    this.progPostsCollectionRef = this.afs.collection<Post>('progPosts');
-    this.progPosts = this.progPostsCollectionRef.valueChanges();
+      return actions.map(action => {
+
+        const data = action.payload.doc.data() as Post;
+        const id = action.payload.doc.id;
+        return {id, ...data};
+
+      });
+
+    }));
 
    }
 
-   getDesignPosts() {
-    return this.designPosts;
+   getPosts() {
+    return this.posts;
   }
 
 
-
-  addDesignPost(newPost: Post) {
+  addPost(post: Post) {
 
     this.model = {
-      category: newPost.category,
-      company: newPost.company,
-      description: newPost.description,
-      location: newPost.location,
-      position: newPost.position,
-      type: newPost.type,
-      url: newPost.url,
+      category: post.category,
+      company: post.company,
+      description: post.description,
+      location: post.location,
+      position: post.position,
+      type: post.type,
+      url: post.url,
     };
 
-    this.designPostsCollectionRef.add(this.model);
+    this.postsCollectionRef.add(this.model);
   }
 
-
-  getProgPosts() {
-    return this.progPosts;
-  }
-
-
-
-  addProgPost(newPost: Post) {
+  updatePost(post: Post) {
 
     this.model = {
-      category: newPost.category,
-      company: newPost.company,
-      description: newPost.description,
-      location: newPost.location,
-      position: newPost.position,
-      type: newPost.type,
-      url: newPost.url,
+      category: post.category,
+      company: post.company,
+      description: post.description,
+      location: post.location,
+      position: post.position,
+      type: post.type,
+      url: post.url,
     };
 
-    this.progPostsCollectionRef.add(this.model);
+    this.postsCollectionRef.doc(post.id).update(this.model);
+  }
+
+  deletePost(id: string) {
+    this.postsCollectionRef.doc(id).delete();
   }
 }

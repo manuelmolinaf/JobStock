@@ -11,13 +11,13 @@ import { FirestoreDataService } from '../../services/firestore-data.service';
 })
 export class HomeComponent implements OnInit {
 
-  progPosts: Observable<Post[]>;
-  designPosts: Observable<Post[]>;
+  posts: Observable<Post[]>;
 
   constructor(private router: Router, private data: FirestoreDataService) {
 
-    this.progPosts = this.data.getProgPosts();
-    this.designPosts = this.data.getDesignPosts();
+
+
+    this.posts = this.data.getPosts();
 
    }
 
@@ -26,6 +26,20 @@ export class HomeComponent implements OnInit {
 
   toPost() {
     this.router.navigateByUrl('pages/post');
+  }
+
+  toDetails(id: string) {
+    this.router.navigateByUrl('pages/post-details/' + id);
+  }
+
+  toHome() {
+    this.router.navigateByUrl('pages/home');
+  }
+
+  toSearchResults(keyword: string) {
+
+    this.router.navigateByUrl('pages/search-results/' + keyword);
+
   }
 
 }

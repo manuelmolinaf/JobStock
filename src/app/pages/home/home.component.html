@@ -5,15 +5,16 @@
 
 <body>
 
-	
+	<img id="logo" src="../../../assets/logo.png" (click)="toHome()">
 
 	<div class="row">
 
 		<div class="col-xs-2">
-		<input class="form-control" id="search" type="text" placeholder="Search" aria-label="Search">
+
+		<input #keyword class="form-control" id="search" type="text" placeholder="Search" aria-label="Search">
 		
 		</div>
-		<button type="button" class="btn btn-primary" id="searchBtn" style="margin-left: 10px">Search</button>
+		<button type="button" class="btn btn-primary" id="searchBtn" (click)="toSearchResults(keyword.value)">Search</button>
 		
 		<div class="d-flex justify-content-end">
 			<button type="button" class="btn btn-success" id="postBtn" (click)="toPost()" >
@@ -41,13 +42,21 @@
 		</tr>
 		</thead>
 		<tbody>
-		<tr *ngFor="let designPost of designPosts | async" 
-			[class.location]="designPost.location"
-			[class.position]="designPost.position"
-			[class.company]="designPost.company">
-			<td>{{designPost.location}}</td>
-			<td>{{designPost.position}}</td>
-			<td>{{designPost.company}}</td>
+			<tr *ngFor="let post of posts | async" 
+			[class.location]="post.location"
+			[class.position]="post.position"
+			[class.company]="post.company"
+			[class.category]="post.category"
+			[class.id]="post.id"
+			(click)="toDetails(post.id)"
+			class="post">
+
+			<ng-template [ngIf]="post.category === 'Design'">
+				<td>{{post.location}}</td>
+				<td>{{post.position}}</td>
+				<td>{{post.company}}</td>
+			</ng-template>
+
 		</tr>
 		
 
@@ -81,14 +90,20 @@
 		</tr>
 		</thead>
 		<tbody>
-				<tr *ngFor="let progPost of progPosts | async" 
-				[class.location]="progPost.location"
-				[class.position]="progPost.position"
-				[class.company]="progPost.company">
+				<tr *ngFor="let post of posts | async" 
+				[class.location]="post.location"
+				[class.position]="post.position"
+				[class.company]="post.company"
+				[class.category]="post.category"
+				[class.id]="post.id"
+				(click)="toDetails(post.id)"
+				class="post">
 
-				<td>{{progPost.location}}</td>
-				<td>{{progPost.position}}</td>
-				<td>{{progPost.company}}</td>
+				<ng-template [ngIf]="post.category === 'Programming'">
+					<td>{{post.location}}</td>
+					<td>{{post.position}}</td>
+					<td>{{post.company}}</td>
+				</ng-template>
 
 			</tr>
 		</tbody>

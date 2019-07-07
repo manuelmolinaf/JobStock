@@ -36,11 +36,13 @@ export class PostComponent implements OnInit {
         this.filled = true;
         this.submitted = true;
 
-        if (category === 'Design') {
-        this.data.addDesignPost(new Post(category, company, description, location, position, type, url));
-      } else {
-        this.data.addProgPost(new Post(category, company, description, location, position, type, url));
-      }
+        this.data.addPost(new Post(category, company, description, location, position, type, url));
+
+      //   if (category === 'Design') {
+      //   this.data.addDesignPost(new Post(category, company, description, location, position, type, url));
+      // } else {
+      //   this.data.addProgPost(new Post(category, company, description, location, position, type, url));
+      // }
 
     } else {
 

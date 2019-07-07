@@ -4,8 +4,9 @@
 <body>
 	<div *ngIf="this.filled === false" class="alert alert-danger" role="alert">
 			There are missing fields!
-
 	</div>
+
+	<img id="logo" src="../../../assets/logo.png" (click)="toHome()">
 
 	<div *ngIf="this.submitted === true">
 		<div class="alert alert-success" role="alert">
@@ -81,8 +82,7 @@
 		</div>
 
 
-		<button (click)="addPost(category.value, company.value, description.value, location.value, position.value, type.value, url.value)" type="button" class="btn btn-success" id="postBtn" >
-			<i class="fas fa-bullhorn"></i>
+		<button (click)="addPost(category.value, company.value, description.value, location.value, position.value, type.value, url.value)" type="button" class="btn btn-success btn-lg btn-block" id="postBtn" >
 			Post  
 		</button>
 

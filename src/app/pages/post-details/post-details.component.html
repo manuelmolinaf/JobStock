@@ -1,0 +1,71 @@
+<head>
+
+</head>
+
+<body>
+		<img id="logo" src="../../../assets/logo.png" (click)="toHome()">
+
+		
+		<div class="row">
+
+			<div class="col-xs-2">
+				<input #keyword class="form-control" id="search" type="text" placeholder="Search" aria-label="Search">
+			</div>
+
+			<button type="button" class="btn btn-primary" id="searchBtn" (click)="toSearchResults(keyword.value)">Search</button>
+
+			
+			<div class="d-flex justify-content-end">
+				<button type="button" class="btn btn-warning" id="editBtn" >
+					Edit
+				</button>
+			</div>
+
+			<div class="d-flex justify-content-end">
+				<button type="button" class="btn btn-danger" id="deleteBtn" (click)="deletePost()">
+					Delete
+				</button>
+			</div>
+			
+			<div class="d-flex justify-content-end">
+				<button type="button" class="btn btn-success" id="postBtn" (click)="toPost()" >
+					<i class="fas fa-bullhorn"></i>
+					Post a Job  
+				</button>
+			</div>
+
+			
+				
+		</div>
+    
+	
+	
+	<div *ngFor="let post of posts | async"
+		[class.category]="post.category"
+		[class.location]="post.location"
+		[class.position]="post.position"
+		[class.company]="post.company"
+		[class.category]="post.category"
+		[class.description]="post.description"
+		[class.type]="post.type"
+		[class.url]="post.url"
+		[class.id]="post.id" style ="margin-top:50px">
+
+		<ng-template [ngIf]="post.id === this.postId">
+
+			<h2>{{post.company}}</h2>
+			<h5>{{post.location}}</h5>
+			<hr>
+			{{post.position}} - {{post.type}}
+			<hr>
+			<p align="justify">{{post.description}}</p>
+
+			<a href={{post.url}}>{{post.url}}</a>
+
+
+		</ng-template>
+
+
+	</div>
+
+</body>

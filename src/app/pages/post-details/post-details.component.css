@@ -8,13 +8,6 @@ body{
 
 }
 
-
-.row{
-
-    display: flex; 
-    
-}
-
 img{
 
     width:50%;
@@ -30,29 +23,30 @@ img{
    
 }
 
+
+.row{
+
+    display: flex; 
+    
+}
+
+
+
 #searchBtn{
+
+    margin-right: auto;
     margin-left: 20px;
-    margin-right: 356px;
-}
-
-
-.table{
-
-    margin-top:25px;
 
 }
 
-nav{
+#postBtn{
 
-    margin-left:525px;
-
+    margin-right: auto;
+    margin-left: 10px;
+    
 }
 
-.post{
-    cursor: pointer;
-}
+#editBtn{
 
-.post:hover{
-    background-color: rgb(217, 240, 255);
-
+    margin-right: 10px;
 }

@@ -11,6 +11,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { PostComponent } from './pages/post/post.component';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { PostDetailsComponent } from './pages/post-details/post-details.component';
+import { SearchResultsComponent } from './pages/search-results/search-results.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
     LoginComponent,
     HomeComponent,
     RegisterComponent,
-    PostComponent
+    PostComponent,
+    PostDetailsComponent,
+    SearchResultsComponent
   ],
   imports: [
     BrowserModule,
