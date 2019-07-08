@@ -1,5 +1,9 @@
+<head>
 
-<form class="text-center border border-light p-5">
+</head>
+
+<body>
+  
 
   <p class="h4 mb-4">Sign up</p>
 
@@ -18,20 +22,17 @@
   <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail" required #email>
 
 
-  <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" required #type>
+  <label for="inputPassword5">Password</label>
+<input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" #password>
   
-  <select class="browser-default custom-select" style="margin-top: 25px" required #fName>
+  <select class="browser-default custom-select" style="margin-top: 25px" required #type>
     <option value="1" selected>User</option> 
     <option value="2">Poster</option> 
   </select>
 
 
-
-
   <button class="btn btn-info my-4 btn-block" type="submit" (click)="onSubmit()">Sign up</button>
 
 
-  
 
-  
-</form>
+</body>

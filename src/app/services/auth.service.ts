@@ -45,7 +45,7 @@ export class AuthService {
      }
 
      googleLogin(){
-        const provider = new firebase.auth.GoogleAuthProvider();
+        let provider = new firebase.auth.GoogleAuthProvider();
         return this.oAuthLogin(provider);
     }
 
@@ -63,7 +63,7 @@ export class AuthService {
     }
 
     private createUser(user,data){
-        const userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${user.uid}`);
+        let userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${user.uid}`);
         return userRef.set(data, {merge: true});
     }    
  
@@ -72,9 +72,9 @@ export class AuthService {
     }
 
     private updateUserData(user){
-        const userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${user.uid}`);
+        let userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${user.uid}`);
      // console.log(userRef);
-        const data: any = {
+        let data: any = {
             uid: user.uid,
             email: user.email,
             displayName: user.displayName,
@@ -86,7 +86,7 @@ export class AuthService {
 
      addInfo(data){
         let sub = this.user.subscribe((currUser)=>{
-            const userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${currUser.uid}`);
+            let userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${currUser.uid}`);
 
             return userRef.set(data, {merge: true});
         });
