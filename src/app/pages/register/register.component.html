@@ -6,22 +6,21 @@
   <div class="form-row mb-4">
       <div class="col">
          
-          <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">
+          <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name" required #fName>
       </div>
       <div class="col">
         
-          <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">
+          <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name" required #lName>
       </div>
   </div>
 
  
-  <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+  <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail" required #email>
 
 
-  <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+  <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" required #type>
   
-  <select class="browser-default custom-select" style="margin-top: 25px">
-    
+  <select class="browser-default custom-select" style="margin-top: 25px" required #fName>
     <option value="1" selected>User</option> 
     <option value="2">Poster</option> 
   </select>
@@ -29,7 +28,7 @@
 
 
 
-  <button class="btn btn-info my-4 btn-block" type="submit" (click)="toLogin()">Sign up</button>
+  <button class="btn btn-info my-4 btn-block" type="submit" (click)="onSubmit()">Sign up</button>
 
 
   

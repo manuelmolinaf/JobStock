@@ -14,7 +14,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { PostDetailsComponent } from './pages/post-details/post-details.component';
 import { SearchResultsComponent } from './pages/search-results/search-results.component';
 import { EditPostComponent } from './pages/edit-post/edit-post.component';
-
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { EditPostComponent } from './pages/edit-post/edit-post.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule
   ],
-  providers: [AngularFirestore],
+  providers: [AngularFirestore, AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
