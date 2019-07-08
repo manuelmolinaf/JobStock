@@ -25,11 +25,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
 
-    // const email = this.email.nativeElement.value;
-    // const type = this.type.nativeElement.value;
-    // const password = this.password.nativeElement.value;
-    // const fName = this.fName.nativeElement.value;
-    // const lName = this.lName.nativeElement.value;
+
 
     const email = this.email.nativeElement.value;
     const type = this.type.nativeElement.value;
@@ -39,7 +35,7 @@ export class RegisterComponent implements OnInit {
 
 
     const data: any = {
-      email,
+      email:email,
       firstName: fName,
       lastName: lName,
       accountType: type
