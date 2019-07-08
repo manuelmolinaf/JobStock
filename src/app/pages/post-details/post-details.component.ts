@@ -36,9 +36,15 @@ export class PostDetailsComponent implements OnInit {
   }
 
   deletePost() {
-
     this.data.deletePost(this.postId);
-    this.router.navigateByUrl('pages/home');
+
+    const rout = this.router;
+
+// tslint:disable-next-line: only-arrow-functions
+    setTimeout( function() {
+      rout.navigateByUrl('pages/home');
+    }, 400);
+
   }
 
   toHome() {
@@ -51,4 +57,14 @@ export class PostDetailsComponent implements OnInit {
 
   }
 
+  toEditPost(id: string) {
+
+    this.router.navigateByUrl('pages/edit-post/' + id);
+
+  }
+
+// tslint:disable-next-line: use-life-cycle-interface
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 }

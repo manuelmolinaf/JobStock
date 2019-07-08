@@ -13,6 +13,7 @@ import { PostComponent } from './pages/post/post.component';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { PostDetailsComponent } from './pages/post-details/post-details.component';
 import { SearchResultsComponent } from './pages/search-results/search-results.component';
+import { EditPostComponent } from './pages/edit-post/edit-post.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SearchResultsComponent } from './pages/search-results/search-results.co
     RegisterComponent,
     PostComponent,
     PostDetailsComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    EditPostComponent
   ],
   imports: [
     BrowserModule,

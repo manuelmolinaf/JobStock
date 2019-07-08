@@ -71,4 +71,6 @@ export class FirestoreDataService {
   deletePost(id: string) {
     this.postsCollectionRef.doc(id).delete();
   }
+
+
 }
