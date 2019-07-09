@@ -16,7 +16,11 @@ export class PostDetailsComponent implements OnInit {
   postId: string;
   private sub: any;
 
-  constructor(private route: ActivatedRoute, private data: FirestoreDataService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private data: FirestoreDataService, private router: Router) {
+
+    this.posts = this.data.getPosts();
+
+   }
 
   ngOnInit() {
 
@@ -25,8 +29,6 @@ export class PostDetailsComponent implements OnInit {
       this.postId = params.id;
 
     });
-
-    this.posts = this.data.getPosts();
 
   }
 

@@ -16,6 +16,7 @@ import { SearchResultsComponent } from './pages/search-results/search-results.co
 import { EditPostComponent } from './pages/edit-post/edit-post.component';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {AuthService} from '../app/services/auth.service';
+import { AllPostsComponent } from './pages/all-posts/all-posts.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {AuthService} from '../app/services/auth.service';
     PostComponent,
     PostDetailsComponent,
     SearchResultsComponent,
-    EditPostComponent
+    EditPostComponent,
+    AllPostsComponent
   ],
   imports: [
     BrowserModule,

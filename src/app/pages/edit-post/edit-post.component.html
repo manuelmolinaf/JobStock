@@ -12,7 +12,7 @@
 
   <div *ngIf="this.submitted === true">
     <div class="alert alert-success" role="alert">
-      Posted the job successfully!
+      Updated the job successfully!
     </div>
     <button type="button" class="btn btn-success btn-lg btn-block" (click)="toHome()">Return Home</button>
   </div>
@@ -22,70 +22,85 @@
 
     <h1>Edit a Job</h1>
 
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <label class="input-group-text" for="inputGroupSelect01">Category</label>
-      </div>
-      <select #category class="custom-select" id="inputGroupSelect01">
-        <option selected>Choose...</option>
-        <option value='Design'>Design</option>
-        <option value='Programming'>Programming</option>
-      </select>
+    <div *ngFor="let post of posts | async" 
+				[class.location]="post.location"
+				[class.position]="post.position"
+				[class.company]="post.company"
+				[class.category]="post.category"
+        [class.id]="post.id">
+        
+      <ng-template [ngIf]="post.id === postId">
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Category</label>
+          </div>
+          <select #category class="custom-select" id="inputGroupSelect01">
+            <option selected>{{post.category}}</option>
+            <option value='design'>Design</option>
+            <option value='programming'>Programming</option>
+          </select>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Type</label>
+          </div>
+          <select #type class="custom-select" id="inputGroupSelect01">
+            <option selected>{{post.type}}}</option>
+            <option value='Full Time'>Full Time</option>
+            <option value='Part Time'>Part Time</option>
+            <option value='Freelance'>Freelance</option>
+          </select>
+        </div>
+
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Company</span>
+          </div>
+          <input #company type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value={{post.company}}>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">URL</span>
+          </div>
+          <input #url type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value={{post.url}}>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Position</span>
+          </div>
+          <input #position type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value={{post.position}}>
+        </div>
+        
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Location</span>
+          </div>
+          <input #location type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value={{post.location}}>
+        </div>
+
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Description</span>
+          </div>
+          <textarea #description class="form-control" aria-label="With textarea" value={{post.description}}></textarea>
+        </div>
+
+        <button (click)="editPost(category.value, company.value, description.value, location.value, position.value, type.value, url.value, postId)" type="button" class="btn btn-success btn-lg btn-block" id="postBtn" >
+            Edit 
+        </button>
+
+      </ng-template>
+
+      
+
     </div>
 
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <label class="input-group-text" for="inputGroupSelect01">Type</label>
-      </div>
-      <select #type class="custom-select" id="inputGroupSelect01">
-          <option selected>Choose...</option>
-        <option value='Full Time'>Full Time</option>
-        <option value='Part Time'>Part Time</option>
-        <option value='Freelance'>Freelance</option>
-      </select>
-    </div>
-
-
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default">Company</span>
-      </div>
-      <input #company type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-    </div>
-
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default">URL</span>
-      </div>
-      <input #url type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-    </div>
-
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default">Position</span>
-      </div>
-      <input #position type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-    </div>
-    
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default">Location</span>
-      </div>
-      <input #location type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-    </div>
-
-
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Description</span>
-      </div>
-      <textarea #description class="form-control" aria-label="With textarea"></textarea>
-    </div>
-
-
-    <button (click)="editPost(category.value, company.value, description.value, location.value, position.value, type.value, url.value, postId)" type="button" class="btn btn-success btn-lg btn-block" id="postBtn" >
-      Edit 
-    </button>
   </div>
 
 </body>

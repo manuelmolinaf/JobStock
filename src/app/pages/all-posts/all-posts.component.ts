@@ -3,31 +3,38 @@ import {Router} from '@angular/router';
 import { Observable } from 'rxjs';
 import { Post } from '../../models/post.model';
 import { FirestoreDataService } from '../../services/firestore-data.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-all-posts',
+  templateUrl: './all-posts.component.html',
+  styleUrls: ['./all-posts.component.css']
 })
-export class HomeComponent implements OnInit {
+export class AllPostsComponent implements OnInit {
 
   posts: Observable<Post[]>;
-  postsToShow: Post[];
+  category: string;
+  private sub: any;
 
-  designCount: number;
-  progCount: number;
-
-  constructor(private router: Router, private data: FirestoreDataService) {
+  constructor(private route: ActivatedRoute, private router: Router, private data: FirestoreDataService) {
 
     this.posts = this.data.getPosts();
-
-    this.postsToShow = [];
 
    }
 
   ngOnInit() {
 
+    this.sub = this.route.params.subscribe(params => {
+
+      this.category = params.category;
+
+    });
+
+    this.posts = this.data.getPosts();
+
   }
+
+
 
   toPost() {
     this.router.navigateByUrl('pages/post');
@@ -45,27 +52,6 @@ export class HomeComponent implements OnInit {
 
     this.router.navigateByUrl('pages/search-results/' + keyword);
 
-  }
-
-  addProgCount() {
-
-    this.progCount++;
-  }
-
-  addDesignCount() {
-
-    this.designCount++;
-
-    console.log(this.designCount);
-  }
-
-  getJobsByCategory(cat: string): Post[] {
-
-    this.posts.subscribe(list => {
-      this.postsToShow = list;
-    });
-
-    return this.postsToShow.filter(job => job.category === cat);
   }
 
 }

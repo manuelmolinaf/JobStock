@@ -44,53 +44,50 @@ export class AuthService {
 
      }
 
-     googleLogin(){
-        let provider = new firebase.auth.GoogleAuthProvider();
+     googleLogin() {
+        const provider = new firebase.auth.GoogleAuthProvider();
         return this.oAuthLogin(provider);
     }
 
-    private oAuthLogin(provider){
-        return this.afAuth.auth.signInWithPopup(provider)
-        .then((credential) => {
-            this.updateUserData(credential.user);
-        })
+    private async oAuthLogin(provider) {
+        const credential = await this.afAuth.auth.signInWithPopup(provider);
+        this.updateUserData(credential.user);
     }
 
-    emailLogin(email,password,data){
-        return this.afAuth.auth.createUserWithEmailAndPassword(email,password).then((credential)=>{
-            this.createUser(credential.user, data);
-        });
+    async emailLogin(email: string, password: string, data: any) {
+        const credential = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+        this.createUser(credential.user, data);
     }
 
-    private createUser(user,data){
-        let userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${user.uid}`);
+    private createUser(user: firebase.User, data: any) {
+        const userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${user.uid}`);
         return userRef.set(data, {merge: true});
-    }    
- 
-    loginMail(email,password){
-        return this.afAuth.auth.signInWithEmailAndPassword(email,password);
     }
 
-    private updateUserData(user){
-        let userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${user.uid}`);
+    loginMail(email: string, password: string) {
+        return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+    }
+
+    private updateUserData(user) {
+        const userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${user.uid}`);
      // console.log(userRef);
-        let data: any = {
+        const data: any = {
             uid: user.uid,
             email: user.email,
             displayName: user.displayName,
             photoURL: user.photoURL
-        }
-        
+        };
+
         return userRef.set(data, {merge: true});
     }
 
-     addInfo(data){
-        let sub = this.user.subscribe((currUser)=>{
-            let userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${currUser.uid}`);
+     addInfo(data: any) {
+        const sub = this.user.subscribe((currUser) => {
+            const userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${currUser.uid}`);
 
             return userRef.set(data, {merge: true});
         });
- 
+
     }
 
     signOut() {

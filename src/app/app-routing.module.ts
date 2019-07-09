@@ -7,6 +7,7 @@ import { PostComponent } from './pages/post/post.component';
 import { PostDetailsComponent } from './pages/post-details/post-details.component';
 import { SearchResultsComponent } from './pages/search-results/search-results.component';
 import { EditPostComponent } from './pages/edit-post/edit-post.component';
+import { AllPostsComponent } from './pages/all-posts/all-posts.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path: 'pages/post', component: PostComponent},
   {path: 'pages/post-details/:id', component: PostDetailsComponent},
   {path: 'pages/search-results/:keyword', component: SearchResultsComponent},
-  {path: 'pages/edit-post/:id', component: EditPostComponent}
+  {path: 'pages/edit-post/:id', component: EditPostComponent},
+  {path: 'pages/all-posts/:category', component: AllPostsComponent}
 ];
 
 @NgModule({

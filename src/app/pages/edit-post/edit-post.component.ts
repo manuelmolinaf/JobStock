@@ -15,7 +15,6 @@ export class EditPostComponent implements OnInit {
   posts: Observable<Post[]>;
   postId: string;
   private sub: any;
-  post: Post;
 
   filled: boolean;
   submitted: boolean;
@@ -24,9 +23,7 @@ export class EditPostComponent implements OnInit {
 
     this.filled = true;
     this.submitted = false;
-   }
-
-  ngOnInit() {
+    this.posts = this.data.getPosts();
 
     this.sub = this.route.params.subscribe(params => {
 
@@ -34,9 +31,9 @@ export class EditPostComponent implements OnInit {
 
     });
 
-    this.posts = this.data.getPosts();
+   }
 
-
+  ngOnInit() {
 
   }
 
@@ -44,7 +41,7 @@ export class EditPostComponent implements OnInit {
            id: string) {
 
       if (category !== 'Choose...' && company !== '' && description !== '' &&
-          location !== '' && position !== '' && type !== '' && url !== '') {
+          location !== '' && position !== '' && type !== 'Choose...' && url !== '') {
 
       this.filled = true;
       this.submitted = true;
@@ -62,6 +59,12 @@ export class EditPostComponent implements OnInit {
 
   toHome() {
     this.router.navigateByUrl('pages/home');
+  }
+
+  conLog(s:string) {
+
+    console.log(s);
+
   }
 
 
